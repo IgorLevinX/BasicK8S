@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: npm-demo-app
+spec:
+  selector:
+    matchLabels:
+      app: npm-demo-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: npm-demo-app
+    spec:
+      containers:
+      - name: npm-demo-app
+        image: basick8s/npm-demo-app
+        imagePullPolicy: Never
+        RestartPolicy: Always
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: npm-demo-app
+spec:
+  type: LoadBalancer
+  selector:
+    app: npm-demo-app
+  ports:
+    - port: 80
+      targetPort: 3000
+  
+  
+  
