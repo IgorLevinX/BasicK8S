@@ -17,7 +17,6 @@ spec:
       - name: npm-demo-app
         image: basick8s/npm-demo-app
         imagePullPolicy: Never
-        RestartPolicy: Always
         ports:
         - containerPort: 3000
 ---
